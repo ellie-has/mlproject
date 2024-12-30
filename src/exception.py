@@ -1,5 +1,5 @@
 import sys 
-import logger
+from src.logger import logging
 
 def error_massage_detail(error, error_detail: sys):
     _,_,exc_tb = error_detail.exc_info()
@@ -14,17 +14,13 @@ class CustomError(Exception):
     def __init__(self, error_massage, error_detail: sys):
         super().__init__(error_massage)
         self.error_massage = error_massage_detail(error_massage, error_detail=error_detail)
+        logging.error(self.error_message)
     
     def __str__(self):
         return self.error_massage
      
 
-
-if __name__ == "__main__":
-    try:
-        raise ValueError("This is a custom error")
-    except ValueError as e:
-        custom_error = CustomError(str(e), error_detail=sys)
-        logger.create_logger(custom_error)
-        print(custom_error)
+# def custom_error(error_massage, error_detail: sys):
+#     logging.error(error_massage_detail(error_massage, error_detail=error_detail))
+#     raise CustomError(error_massage, error_detail=error_detail)
 
