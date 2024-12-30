@@ -14,10 +14,3 @@ logging.basicConfig(
     level=logging.INFO, 
     format='[ %(asctime)s ] %(lineno)d %(name)s - %(levelname)s - %(message)s'
     )
-
-def create_logger(error):
-    logging.error(error)
-
-
-if __name__ == "__main__":
-    logging.info("Logger is working")
