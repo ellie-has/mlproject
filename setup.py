@@ -2,10 +2,10 @@ from setuptools import setup, find_packages
 from typing import List
 
 HYPEN_E_DOT = '-e .'
-def get_requirements(file_path: str)->List[str]:
+def get_requirements(file_txt: str)->List[str]:
 
     requirements = []
-    with open(file_path) as file_obj:
+    with open(file_txt) as file_obj:
         requirements = file_obj.readlines()
         requirements = [req.replace('\n', '') for req in requirements]
 
@@ -16,7 +16,7 @@ def get_requirements(file_path: str)->List[str]:
 
 
 setup(
-    name='mlproject',
+    name='mlproject', 
     version='0.0.1',
     author='ellie',
     packages=find_packages(),
