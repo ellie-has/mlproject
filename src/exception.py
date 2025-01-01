@@ -10,7 +10,7 @@ def error_massage_detail(error, error_detail: sys):
     return error_masssage
 
 
-class CustomError(Exception):
+class CustomException(Exception):
     def __init__(self, error_massage, error_detail: sys):
         super().__init__(error_massage)
         self.error_massage = error_massage_detail(error_massage, error_detail=error_detail)
@@ -22,5 +22,5 @@ class CustomError(Exception):
 
 # def custom_error(error_massage, error_detail: sys):
 #     logging.error(error_massage_detail(error_massage, error_detail=error_detail))
-#     raise CustomError(error_massage, error_detail=error_detail)
+#     raise CustomException(error_massage, error_detail=error_detail)
 
