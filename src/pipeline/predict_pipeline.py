@@ -18,7 +18,7 @@ class DataIngestion:
     def __init__(self, ingestion_config: DataIngestionConfig):
         self.ingestion_config = ingestion_config
     
-
+    
     def initiate_data_ingestion(self):
         logging.info('Data ingestion initiated')
         try:
