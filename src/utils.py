@@ -18,4 +18,4 @@ def save_object(obj, file_path):
         with open(file_path, 'wb') as file:
             dill.dump(obj, file)
     except Exception as e:
-        raise CustomException(e, sys)
+        raise CustomException(f"Save object failed: {str(e)}", sys)
