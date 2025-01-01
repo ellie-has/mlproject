@@ -44,7 +44,7 @@ class DataTransformation:
         self.data_transformation_config = data_transformation_config
 
 
-    def get_data_transformation_object(self):
+    def get_data_transformer_object(self):
         """
         Create the main data transformation pipeline
         
@@ -77,7 +77,7 @@ class DataTransformation:
             return preprocessor
         except Exception as e:
             logging.error('Error in creating data transformation object')
-            raise CustomException(e,sys)
+            raise CustomException(f"Error in get_data_transformer_object: {str(e)}", sys)
 
 
     def initiate_data_transformation(self, train_path, test_path):
@@ -100,8 +100,6 @@ class DataTransformation:
             
 
             logging.info('obtaining preprocessor object')
-            preprocessor = self.get_data_transformation_object()
-            
             # Split features and target
             traget_column = self.TARGET_COLUMN
             X_train = train_df.drop(traget_column, axis=1)
@@ -111,9 +109,9 @@ class DataTransformation:
 
             # Create and fit preprocessor
             logging.info('Applying data transformations')
-            preprocessor = self.get_data_transformer()
-            X_train_transformed = preprocessor.fit_transform(X_train)
-            X_test_transformed = preprocessor.transform(X_test)
+            preprocessing_obj = self.get_data_transformer_object()
+            X_train_transformed = preprocessing_obj.fit_transform(X_train)
+            X_test_transformed = preprocessing_obj.transform(X_test)
 
             # Combine features and target
             train_arr = np.c_[X_train_transformed, y_train]
@@ -122,15 +120,15 @@ class DataTransformation:
             # Save preprocessor
             logging.info('Saving preprocessor object')
             save_object(
-                file_path=self.config.preprocessor_obj_file_path,
-                obj=preprocessor
+                file_path=self.data_transformation_config.preprocessor_obj_file_path,
+                obj=preprocessing_obj
             )
             
             logging.info('Data transformation completed successfully')
             return (
                 train_arr,
                 test_arr,
-                self.config.preprocessor_obj_file_path
+                self.data_transformation_config.preprocessor_obj_file_path
             )
         
         except Exception as e:
