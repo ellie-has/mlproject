@@ -37,7 +37,6 @@ class DataTransformation:
     def __init__(self, data_transformation_config: DataTransformationConfig):
         """
         Initialize data transformation with configuration
-        
         Args:
             data_transformation_config: Configuration object containing paths and parameters
         """
@@ -47,7 +46,6 @@ class DataTransformation:
     def get_data_transformer_object(self):
         """
         Create the main data transformation pipeline
-        
         Returns:
             ColumnTransformer combining numerical and categorical preprocessing
         """
@@ -83,11 +81,9 @@ class DataTransformation:
     def initiate_data_transformation(self, train_path, test_path):
         """
         Execute the complete data transformation pipeline
-        
         Args:
             train_path: Path to training data CSV
-            test_path: Path to test data CSV
-            
+            test_path: Path to test data CSV  
         Returns:
             Tuple of (transformed_train_data, transformed_test_data, preprocessor_path)
         """
