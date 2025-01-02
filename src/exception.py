@@ -14,7 +14,7 @@ class CustomException(Exception):
     def __init__(self, error_massage, error_detail: sys):
         super().__init__(error_massage)
         self.error_massage = error_massage_detail(error_massage, error_detail=error_detail)
-        logging.error(self.error_message)
+        logging.error(self.error_massage)
     
     def __str__(self):
         return self.error_massage
